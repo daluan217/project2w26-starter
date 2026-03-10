@@ -1,0 +1,52 @@
+{
+    "tests": [
+        {
+            "name": "Writeup (README.md)",
+            "score": 5,
+            "max_score": 5,
+            "status": "passed",
+            "output": "Writeup check passed.\n",
+            "number": "0.1"
+        },
+        {
+            "name": "Compilation",
+            "score": 10,
+            "max_score": 10,
+            "status": "passed",
+            "number": "0.2"
+        },
+        {
+            "name": "Handshake: Client Hello",
+            "score": 25,
+            "max_score": 25,
+            "status": "passed",
+            "number": "1.1"
+        },
+        {
+            "name": "Handshake: Server Hello",
+            "score": 20,
+            "max_score": 20,
+            "status": "passed",
+            "number": "1.2"
+        },
+        {
+            "name": "Encrypt and MAC: Client",
+            "score": 25,
+            "max_score": 25,
+            "status": "passed",
+            "number": "1.3"
+        },
+        {
+            "name": "Encrypt and MAC: Server",
+            "score": 20,
+            "max_score": 20,
+            "status": "passed",
+            "number": "1.4"
+        }
+    ],
+    "leaderboard": [],
+    "visibility": "visible",
+    "execution_time": "16.62",
+    "score": 105,
+    "test_output_format": "md"
+}

@@ -1,0 +1,22 @@
+#!/bin/bash
+set -euo pipefail
+
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+GEN_CERT="${SCRIPT_DIR}/../project/gen_cert"
+
+openssl genpkey -algorithm ec -pkeyopt ec_paramgen_curve:P-256 -outform DER -out "${SCRIPT_DIR}/server_key.bin"
+openssl genpkey -algorithm ec -pkeyopt ec_paramgen_curve:P-256 -outform DER -out "${SCRIPT_DIR}/server_key2.bin"
+openssl genpkey -algorithm ec -pkeyopt ec_paramgen_curve:P-256 -outform DER -out "${SCRIPT_DIR}/ca_key.bin"
+openssl genpkey -algorithm ec -pkeyopt ec_paramgen_curve:P-256 -outform DER -out "${SCRIPT_DIR}/ca_key2.bin"
+openssl pkey -inform DER -in "${SCRIPT_DIR}/ca_key.bin" -pubout -outform DER -out "${SCRIPT_DIR}/ca_public_key.bin"
+openssl pkey -inform DER -in "${SCRIPT_DIR}/ca_key2.bin" -pubout -outform DER -out "${SCRIPT_DIR}/ca_public_key2.bin"
+
+"${GEN_CERT}" "${SCRIPT_DIR}/server_key.bin" "${SCRIPT_DIR}/ca_key.bin" localhost "${SCRIPT_DIR}/server_cert.bin"
+"${GEN_CERT}" "${SCRIPT_DIR}/server_key.bin" "${SCRIPT_DIR}/ca_key.bin" example.com "${SCRIPT_DIR}/server_cert2.bin"
+
+now=$(date +%s)
+not_before=$((now - 120))
+not_after=$((now - 60))
+"${GEN_CERT}" "${SCRIPT_DIR}/server_key.bin" "${SCRIPT_DIR}/ca_key.bin" localhost "${SCRIPT_DIR}/server_cert_expired.bin" "${not_before}" "${not_after}"
+
+rm "${SCRIPT_DIR}/ca_key.bin" "${SCRIPT_DIR}/ca_key2.bin"

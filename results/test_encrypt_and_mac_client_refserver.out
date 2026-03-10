@@ -1,0 +1,7 @@
+received 132 bytes
+RECV CLIENT HELLO
+SEND SERVER HELLO
+SEND DATA PT 500 CT 512
+received 572 bytes
+RECV DATA PT 500 CT 512
+server: malloc.c:2617: sysmalloc: Assertion `(old_top == initial_top (av) && old_size == 0) || ((unsigned long) (old_size) >= MINSIZE && prev_inuse (old_top) && ((unsigned long) old_end & (pagesize - 1)) == 0)' failed.
